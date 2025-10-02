@@ -8,15 +8,15 @@ namespace Laba1
 {
     public class MonitorTech : ComputerTechnology
     {
-        List<int> _resolution = new List<int>();
+        List<uint> _resolution = new List<uint>();
         float _screenSize;
         int _refreshRate;
 
-        public MonitorTech(string manufacturer, List<int> resolution, float screenSize, int refreshRate)
+        public MonitorTech(string manufacturer, List<uint> resolution, float screenSize, int refreshRate)
             : base(manufacturer)
         {
             if (resolution.Count != 2 || resolution[0] < 1 || resolution[1] < 1)
-                throw new ArgumentException("Resolution must be a vector of two positive integers");
+                throw new ArgumentException("The resolution must be represented by two positive integers.");
             _resolution = resolution;
 
             if (screenSize <= 0)
@@ -28,23 +28,23 @@ namespace Laba1
             _refreshRate = refreshRate;
         }
 
-        public List<int> Resolution
+        public List<uint> Resolution
         {
-            get => new List<int>(_resolution);
+            get => new List<uint>(_resolution);
             set
             {
                 if (value.Count != 2 || value[0] < 1 || value[1] < 1)
-                    throw new ArgumentException("Resolution must be a vector of two positive integers");
+                    throw new ArgumentException("The resolution must be represented by two positive integers.");
 
-                _resolution = new List<int>(value);
+                _resolution = new List<uint>(value);
             }
         }
 
-        public void SetResolution(int width, int height)
+        public void SetResolution(uint width, uint height)
         {
             if (width < 1 || height < 1)
                 throw new ArgumentException("Resolution consists of two positive integers");
-            _resolution = new List<int> { width, height };
+            _resolution = new List<uint> { width, height };
         }
 
         public float ScreenSize

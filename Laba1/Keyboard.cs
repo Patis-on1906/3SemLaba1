@@ -29,7 +29,7 @@ namespace Laba1
             get { return _color; }
             set
             {
-                if (value.Any(charecter => !char.IsLetter(charecter)))
+                if (value.Any(charecter => !char.IsLetter(charecter))) // цвет должен содержать только буквы
                     throw new ArgumentException("Color can't consist of anything other than letters");
                 _color = value;
             }
@@ -50,6 +50,7 @@ namespace Laba1
         public Keyboard(string manufacturer, string color, string keysType, string connectionType, bool hasBacklight)
             : this(manufacturer, color, Key.None, Connection.None, hasBacklight)
         {
+            // парсинг строк в enum с обработкой ошибок
             if (!Enum.TryParse(keysType, ignoreCase: true, out Key parsedKey))
                 parsedKey = Key.None;
             KeysType = parsedKey;
@@ -62,11 +63,12 @@ namespace Laba1
 
         public override void Print()
         {
+            // массивы для преобразования enum в читаемые строки
             string[] KeysTypeLiterals = { "none", "membrane", "mechanical", "optical" };
             string[] ConnectionTypeLiterals = { "none", "wired", "wireless" };
 
             Console.WriteLine($"Manufacturer: {Manufacturer}, color: {_color}, type of keys: {KeysTypeLiterals[(int)KeysType]}, " +
-                $"connection type: {ConnectionTypeLiterals[(int)ConnectionType]}, has lighting: {HasBacklight.ToString().ToLower()}");
+                $"connection type: {ConnectionTypeLiterals[(int)ConnectionType]}, has Backlight: {HasBacklight.ToString().ToLower()}");
         }
     }
 }
